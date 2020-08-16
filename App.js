@@ -8,7 +8,9 @@ import MySwitch from "./components/MySwitch";
 export default function App() {
   return (
     <View style={styles.container}>
-      <MyTextInput />
+      <MyTextInput placeholder="First Name" name="firstName" />
+      <MyTextInput placeholder="Last Name" name="lastName" />
+      <Text>I agree to terms</Text>
       <MySwitch />
       <StatusBar style="auto" />
     </View>
@@ -21,5 +23,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    // margin: 20,
   },
 });

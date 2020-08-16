@@ -2,11 +2,12 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import SignUpForm from "./SignUpForm";
+import MyTextInput from "./components/MyTextInput";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <SignUpForm />
+      <MyTextInput />
       <StatusBar style="auto" />
     </View>
   );

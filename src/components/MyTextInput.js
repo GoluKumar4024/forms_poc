@@ -3,10 +3,8 @@ import { Text, View, StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
 
 const MyTextInput = ({ placeholder, name, ...formikProps }) => {
-  //console.log(props);
-  //console.log(props.name);
-  //console.log(placeHolder);
   const formikprops = { ...formikProps };
+  console.log("checking for formikprops");
   console.log(formikprops);
   return (
     <View>

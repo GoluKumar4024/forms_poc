@@ -3,10 +3,10 @@ import { useFormik } from "formik";
 import MySwitch from "../components/MySwitch";
 import MyTextInput from "../components/MyTextInput";
 import { View, Text, StyleSheet, Button } from "react-native";
-import * as Yup from "yup";
+//import * as Yup from "yup";
 
 const SignUp = () => {
-  const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
+  const axios = require("axios").default;
 
   const formikProps = useFormik({
     initialValues: {
@@ -18,6 +18,10 @@ const SignUp = () => {
       confirmPassword: "",
       isAgree: false,
     },
+
+    /*
+
+      const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
 
     validationSchema: Yup.object().shape({
       firstName: Yup.string()
@@ -53,8 +57,15 @@ const SignUp = () => {
       ),
     }),
 
+    https://b35ecf089e42004cee17e338d728bb4a.m.pipedream.net
+    */
+
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
+      axios
+        .post("http://192.168.43.174:8080/user", values)
+        .then((response) => console.log(response))
+        .catch((error) => console.log("error is ", error));
     },
   });
   // console.log(formikProps);

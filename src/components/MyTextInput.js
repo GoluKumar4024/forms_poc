@@ -6,6 +6,7 @@ const MyTextInput = ({ placeholder, name, ...formikProps }) => {
   const formikprops = { ...formikProps };
   //console.log("checking for formikprops");
   //console.log(formikprops);
+
   return (
     <View>
       <Text>{placeholder}</Text>

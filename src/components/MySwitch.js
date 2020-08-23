@@ -18,6 +18,7 @@ const MySwitch = ({ name, ...formikProps }) => {
         ios_backgroundColor="#3e3e3e"
         value={isEnabled}
         onValueChange={toggleSwitch}
+        style={{ marginRight: 200 }}
       />
     </View>
   );

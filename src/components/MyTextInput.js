@@ -14,6 +14,7 @@ const MyTextInput = ({ placeholder, name, ...formikProps }) => {
         name={name}
         placeholder={placeholder}
         onChangeText={formikprops.handleChange(name)}
+        autoFocus
       />
     </View>
   );

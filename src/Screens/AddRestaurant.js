@@ -3,6 +3,7 @@ import { Formik, Field, Form, ErrorMessage, useField } from "formik";
 import * as Yup from "yup";
 import { View, Text, StyleSheet, Button, TextInput } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { Header } from "react-native-elements";
 
 const FieldWrapper = ({ children, label, formikProps, formikKey }) => (
   <View style={{ marginHorizontal: 20, marginVertical: 5 }}>
@@ -101,95 +102,103 @@ const AddRestaurant = () => {
   });
 
   return (
-    <KeyboardAwareScrollView style={{ marginTop: 80 }}>
-      <Formik
-        initialValues={{
-          hotelName: "",
-          hotelOwnerName: "",
-          hotelAddress: "",
-          hotelCoOrdinates_longitude: "",
-          hotelCoOrdinates_latitude: "",
-          contactNumber: "",
-          emergencyContactNumber: "",
-          userId: "",
-          password: "",
-          confirmPassword: "",
-        }}
-        onSubmit={(values) => {
-          alert(JSON.stringify(values));
-        }}
-        validationSchema={validationSchema}
-      >
-        {(formikProps) => (
-          <React.Fragment>
-            <StyledInput
-              label="Hotel Name"
-              formikProps={formikProps}
-              formikKey="hotelName"
-              autoFocus
-              placeholder="Hotel Name"
-            />
-            <StyledInput
-              label="Hotel Owner Name"
-              formikProps={formikProps}
-              formikKey="hotelOwnerName"
-              placeholder="Hotel Owner Name"
-            />
-            <StyledInput
-              label="Hotel Address"
-              formikProps={formikProps}
-              formikKey="hotelAddress"
-              placeholder="Hotel Address"
-            />
-            <StyledInput
-              label="Address Longitde"
-              formikProps={formikProps}
-              formikKey="hotelCoOrdinates_longitude"
-              placeholder="Address Longitude"
-            />
-            <StyledInput
-              label="Hotel Latitude"
-              formikProps={formikProps}
-              formikKey="hotelCoOrdinates_latitude"
-              placeholder="Hotel Latitude"
-            />
-            <StyledInput
-              label="Contact Number"
-              formikProps={formikProps}
-              formikKey="contactNumber"
-              placeholder="Contact Number"
-            />
-            <StyledInput
-              label="Secondary Contact"
-              formikProps={formikProps}
-              formikKey="emergencyContactNumber"
-              placeholder="Secondary Contact"
-            />
-            <StyledInput
-              label="User Id"
-              formikProps={formikProps}
-              formikKey="userId"
-              placeholder="User Id"
-            />
-            <StyledInput
-              label="Password"
-              formikProps={formikProps}
-              formikKey="password"
-              placeholder="Password"
-              secureTextEntry
-            />
-            <StyledInput
-              label="Confirm Password"
-              formikProps={formikProps}
-              formikKey="confirmPassword"
-              placeholder="Confirm Password"
-              secureTextEntry
-            />
-            <Button title="Add Hotel" onPress={formikProps.handleSubmit} />
-          </React.Fragment>
-        )}
-      </Formik>
-    </KeyboardAwareScrollView>
+    <React.Fragment>
+      <Header
+        leftComponent={{ icon: "menu", color: "#fff" }}
+        centerComponent={{ text: "Add Hotel", style: { color: "#fff" } }}
+        rightComponent={{ icon: "home", color: "#fff" }}
+      />
+
+      <KeyboardAwareScrollView style={{ marginTop: 20 }}>
+        <Formik
+          initialValues={{
+            hotelName: "",
+            hotelOwnerName: "",
+            hotelAddress: "",
+            hotelCoOrdinates_longitude: "",
+            hotelCoOrdinates_latitude: "",
+            contactNumber: "",
+            emergencyContactNumber: "",
+            userId: "",
+            password: "",
+            confirmPassword: "",
+          }}
+          onSubmit={(values) => {
+            alert(JSON.stringify(values));
+          }}
+          validationSchema={validationSchema}
+        >
+          {(formikProps) => (
+            <React.Fragment>
+              <StyledInput
+                label="Hotel Name"
+                formikProps={formikProps}
+                formikKey="hotelName"
+                autoFocus
+                placeholder="Hotel Name"
+              />
+              <StyledInput
+                label="Hotel Owner Name"
+                formikProps={formikProps}
+                formikKey="hotelOwnerName"
+                placeholder="Hotel Owner Name"
+              />
+              <StyledInput
+                label="Hotel Address"
+                formikProps={formikProps}
+                formikKey="hotelAddress"
+                placeholder="Hotel Address"
+              />
+              <StyledInput
+                label="Address Longitde"
+                formikProps={formikProps}
+                formikKey="hotelCoOrdinates_longitude"
+                placeholder="Address Longitude"
+              />
+              <StyledInput
+                label="Hotel Latitude"
+                formikProps={formikProps}
+                formikKey="hotelCoOrdinates_latitude"
+                placeholder="Hotel Latitude"
+              />
+              <StyledInput
+                label="Contact Number"
+                formikProps={formikProps}
+                formikKey="contactNumber"
+                placeholder="Contact Number"
+              />
+              <StyledInput
+                label="Secondary Contact"
+                formikProps={formikProps}
+                formikKey="emergencyContactNumber"
+                placeholder="Secondary Contact"
+              />
+              <StyledInput
+                label="User Id"
+                formikProps={formikProps}
+                formikKey="userId"
+                placeholder="User Id"
+              />
+              <StyledInput
+                label="Password"
+                formikProps={formikProps}
+                formikKey="password"
+                placeholder="Password"
+                secureTextEntry
+              />
+              <StyledInput
+                label="Confirm Password"
+                formikProps={formikProps}
+                formikKey="confirmPassword"
+                placeholder="Confirm Password"
+                secureTextEntry
+              />
+              <Button title="Add Hotel" onPress={formikProps.handleSubmit} />
+            </React.Fragment>
+          )}
+        </Formik>
+      </KeyboardAwareScrollView>
+    </React.Fragment>
   );
 };
 

@@ -124,7 +124,7 @@ const AddRestaurant = () => {
             confirmPassword: "",
           }}
           onSubmit={(values) => {
-            alert(JSON.stringify(values));
+            alert(JSON.stringify(values), null, 10);
           }}
           validationSchema={validationSchema}
         >

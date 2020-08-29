@@ -4,40 +4,7 @@ import * as Yup from "yup";
 import { View, Text, StyleSheet, Button, TextInput } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Header } from "react-native-elements";
-
-const FieldWrapper = ({ children, label, formikProps, formikKey }) => (
-  <View style={{ marginHorizontal: 20, marginVertical: 5 }}>
-    <Text style={{ marginBottom: 3 }}>{label}</Text>
-    {children}
-    <Text style={{ color: "red" }}>
-      {formikProps.touched[formikKey] && formikProps.errors[formikKey]}
-    </Text>
-  </View>
-);
-
-const StyledInput = ({ label, formikProps, formikKey, ...rest }) => {
-  const inputStyles = {
-    borderWidth: 1,
-    borderColor: "black",
-    padding: 10,
-    marginBottom: 3,
-  };
-
-  if (formikProps.touched[formikKey] && formikProps.errors[formikKey]) {
-    inputStyles.borderColor = "red";
-  }
-
-  return (
-    <FieldWrapper label={label} formikKey={formikKey} formikProps={formikProps}>
-      <TextInput
-        style={inputStyles}
-        onChangeText={formikProps.handleChange(formikKey)}
-        onBlur={formikProps.handleBlur(formikKey)}
-        {...rest}
-      />
-    </FieldWrapper>
-  );
-};
+import StyledInput from "../components/StyledInput";
 
 const AddRestaurant = () => {
   const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
@@ -57,13 +24,10 @@ const AddRestaurant = () => {
 
     hotelAddress: Yup.string().label("Hotel Address").required("*Required"),
 
-    hotelCoOrdinates_longitude: Yup.string()
-      .label("Longitude")
-      .required("*Required"),
-
-    hotelCoOrdinates_latitude: Yup.string()
-      .label("Latitude")
-      .required("*Required"),
+    coordinates: Yup.object().shape({
+      longitude: Yup.string().label("Longitude").required("*Required"),
+      latitude: Yup.string().label("Latitude").required("*Required"),
+    }),
 
     contactNumber: Yup.string()
       .label("Contact Number")
@@ -115,8 +79,10 @@ const AddRestaurant = () => {
             hotelName: "",
             hotelOwnerName: "",
             hotelAddress: "",
-            hotelCoOrdinates_longitude: "",
-            hotelCoOrdinates_latitude: "",
+            coordinates: {
+              longitude: "",
+              latitude: "",
+            },
             contactNumber: "",
             emergencyContactNumber: "",
             userId: "",
@@ -150,16 +116,16 @@ const AddRestaurant = () => {
                 placeholder="Hotel Address"
               />
               <StyledInput
-                label="Address Longitde"
+                label="Hotel Longitde"
                 formikProps={formikProps}
-                formikKey="hotelCoOrdinates_longitude"
-                placeholder="Address Longitude"
+                formikKey="coordinates.longitude"
+                placeholder="Longitude"
               />
               <StyledInput
                 label="Hotel Latitude"
                 formikProps={formikProps}
-                formikKey="hotelCoOrdinates_latitude"
-                placeholder="Hotel Latitude"
+                formikKey="coordinates.latitude"
+                placeholder="Latitude"
               />
               <StyledInput
                 label="Contact Number"

@@ -3,13 +3,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import AddRestaurant from "./src/Screens/AddRestaurant";
 export default function App() {
-  return (
-    // <View style={styles.container}>
-    //   <AddResturant />
-    //   <StatusBar style="auto" />
-    // </View>
-    <AddRestaurant />
-  );
+  return <AddRestaurant />;
 }
 
 const styles = StyleSheet.create({

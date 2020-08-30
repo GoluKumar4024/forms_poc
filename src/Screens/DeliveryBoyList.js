@@ -5,36 +5,65 @@ import {
   FlatList,
   ActivityIndicator,
   StyleSheet,
+  SafeAreaView,
 } from "react-native";
-import { List, ListItem, SearchBar } from "react-native-elements";
+import { ListItem, SearchBar, Avatar } from "react-native-elements";
 import DeliveryBoy from "../RawData/DeliveryBoy.json";
+import { Header } from "react-native-elements";
 
-const DeliveryBoyList = () => {
+// keyExtractor = (item, index) => {
+//   return (item) => `${item.lastName} ${item.phone}`;
+// };
+
+const renderSeparator = () => {
   return (
-    <View>
-      <Text>Here i will render list of employees</Text>
-      {/* <Text>{JSON.stringify(DeliveryBoy)}</Text> */}
-      <FlatList
-        data={DeliveryBoy}
-        renderItem={({ item }) => (
-          <View style={styles.renderStyle}>
-            <Text>{item.firstName}</Text>
-            <Text>{item.lastName}</Text>
-          </View>
-        )}
-        keyExtractor={(item) => item.lastName}
-      />
-    </View>
+    <View
+      style={{
+        height: 1,
+        width: "86%",
+        backgroundColor: "black",
+        marginLeft: "14%",
+      }}
+    />
   );
 };
 
-const styles = StyleSheet.create({
-  renderStyle: {
-    borderWidth: 2,
-    marginHorizontal: 0.2,
-    marginVertical: 4,
-    borderColor: "black",
-  },
-});
+const keyExtractor = (item, index) => index.toString();
+
+const renderItem = ({ item, index }) => {
+  return (
+    <ListItem
+      title={`${item.firstName} ${item.lastName}`}
+      subtitle={item.userId}
+      leftAvatar={
+        <Avatar rounded source={{ uri: "foo.jpg" }} title={item.firstName[0]} />
+      }
+      containerStyle={{ borderBottomWidth: 0 }}
+    />
+  );
+};
+
+const DeliveryBoyList = () => {
+  return (
+    <React.Fragment>
+      <Header
+        leftComponent={{ icon: "menu", color: "#fff" }}
+        centerComponent={{
+          text: "Delivery Boy List",
+          style: { color: "#fff" },
+        }}
+      />
+      {/* <Text>{JSON.stringify(DeliveryBoy)}</Text> */}
+      <FlatList
+        data={DeliveryBoy}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        ItemSeparatorComponent={renderSeparator}
+      />
+    </React.Fragment>
+  );
+};
+
+const styles = StyleSheet.create({});
 
 export default DeliveryBoyList;

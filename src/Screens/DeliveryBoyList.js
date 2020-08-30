@@ -11,10 +11,6 @@ import { ListItem, SearchBar, Avatar } from "react-native-elements";
 import DeliveryBoy from "../RawData/DeliveryBoy.json";
 import { Header } from "react-native-elements";
 
-// keyExtractor = (item, index) => {
-//   return (item) => `${item.lastName} ${item.phone}`;
-// };
-
 const renderSeparator = () => {
   return (
     <View
@@ -38,7 +34,8 @@ const renderItem = ({ item, index }) => {
       leftAvatar={
         <Avatar rounded source={{ uri: "foo.jpg" }} title={item.firstName[0]} />
       }
-      containerStyle={{ borderBottomWidth: 0 }}
+      
+      onPress={() => {}}
     />
   );
 };
@@ -59,6 +56,7 @@ const DeliveryBoyList = () => {
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         ItemSeparatorComponent={renderSeparator}
+        onEndReachedThreshold={50}
       />
     </React.Fragment>
   );

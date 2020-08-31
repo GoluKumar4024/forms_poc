@@ -5,9 +5,5 @@ import AddRestaurant from "./src/Screens/AddRestaurant";
 import DeliveryBoyList from "./src/Screens/DeliveryBoyList";
 import DeliveryBoyCard from "./src/Screens/DeliveryBoyCard";
 export default function App() {
-  return (
-    <View>
-      <DeliveryBoyCard />
-    </View>
-  );
+  return <DeliveryBoyCard />;
 }

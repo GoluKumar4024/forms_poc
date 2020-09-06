@@ -60,7 +60,7 @@ const DeliveryBoyCard = () => {
               <DataTable.Title>Details</DataTable.Title>
             </DataTable.Header>
             {Object.keys(dataArray).map((k) => (
-              <DataTable.Row>
+              <DataTable.Row key>
                 <DataTable.Cell>{k}</DataTable.Cell>
                 <DataTable.Cell>{dataArray[k]}</DataTable.Cell>
               </DataTable.Row>

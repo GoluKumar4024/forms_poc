@@ -6,12 +6,12 @@ import AddRestaurant from "./src/Screens/AddRestaurant";
 import DeliveryBoyList from "./src/Screens/DeliveryBoyList";
 import DeliveryBoyCard from "./src/Screens/DeliveryBoyCard";
 
-import { Provider as BlogProvider } from "./src/Practice/BlogReducer";
-import BlogScreen from "./src/Practice/BlogScreen";
+import AddDeliveryBoy from "./src/Screens/AddDeliveryBoy";
+
+// import { Provider as BlogProvider } from "./src/Practice/BlogReducer";
+// import BlogScreen from "./src/Practice/BlogScreen";
+import SampleForm from "./src/Practice/SampleForm";
+
 export default function App() {
-  return (
-    <BlogProvider>
-      <BlogScreen />
-    </BlogProvider>
-  );
+  return <SampleForm />;
 }

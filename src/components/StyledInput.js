@@ -3,32 +3,24 @@ import { Formik, Field, Form, ErrorMessage, useField } from "formik";
 import * as Yup from "yup";
 import { View, Text, StyleSheet, Button, TextInput } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { Header } from "react-native-elements";
 
-const FieldWrapper = ({ children, label, formikProps, formikKey }) => (
+const FieldWrapper = ({ children, label }) => (
   <View style={{ marginHorizontal: 20, marginVertical: 5 }}>
     <Text style={{ marginBottom: 3 }}>{label}</Text>
     {children}
-    <Text style={{ color: "red" }}>
-      {formikProps.touched[formikKey] && formikProps.errors[formikKey]}
-    </Text>
   </View>
 );
 
 const StyledInput = ({ label, formikProps, formikKey, ...rest }) => {
   const inputStyles = {
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: "black",
     padding: 10,
     marginBottom: 3,
   };
 
-  if (formikProps.touched[formikKey] && formikProps.errors[formikKey]) {
-    inputStyles.borderColor = "red";
-  }
-
   return (
-    <FieldWrapper label={label} formikKey={formikKey} formikProps={formikProps}>
+    <FieldWrapper label={label}>
       <TextInput
         style={inputStyles}
         onChangeText={formikProps.handleChange(formikKey)}

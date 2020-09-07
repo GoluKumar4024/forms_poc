@@ -24,10 +24,10 @@ const AddRestaurant = () => {
 
     hotelAddress: Yup.string().label("Hotel Address").required("*Required"),
 
-    coordinates: Yup.object().shape({
-      longitude: Yup.string().label("Longitude").required("*Required"),
-      latitude: Yup.string().label("Latitude").required("*Required"),
-    }),
+    coordinates: Yup.object({
+      longitude: Yup.string().label("Longitude").required(),
+      latitude: Yup.string().label("Latitude").required(),
+    }).default(undefined),
 
     contactNumber: Yup.string()
       .label("Contact Number")
@@ -64,13 +64,11 @@ const AddRestaurant = () => {
         return this.parent.password === value;
       }),
   });
-
   return (
     <React.Fragment>
       <Header
         leftComponent={{ icon: "menu", color: "#fff" }}
         centerComponent={{ text: "Add Hotel", style: { color: "#fff" } }}
-        rightComponent={{ icon: "home", color: "#fff" }}
       />
 
       <KeyboardAwareScrollView style={{ marginTop: 20 }}>
@@ -91,6 +89,7 @@ const AddRestaurant = () => {
           }}
           onSubmit={(values) => {
             alert(JSON.stringify(values), null, 10);
+            console.log(validationSchema);
           }}
           validationSchema={validationSchema}
         >
@@ -118,13 +117,15 @@ const AddRestaurant = () => {
               <StyledInput
                 label="Hotel Longitde"
                 formikProps={formikProps}
-                formikKey="coordinates.longitude"
+                formikKey="coordinates"
+                formikKeyKey="longitude"
                 placeholder="Longitude"
               />
               <StyledInput
                 label="Hotel Latitude"
                 formikProps={formikProps}
-                formikKey="coordinates.latitude"
+                formikKey="coordinates"
+                formikKeyKey="latitude"
                 placeholder="Latitude"
               />
               <StyledInput

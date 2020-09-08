@@ -10,7 +10,7 @@
       "city": "Wedgewood",
       "zipcode": "277614"
     },
-    "phone": "(969) 431-2581",
+    "contactNumber": "(969) 431-2581",
     "userId": "Wedgewood",
     "password": "password1"
   },
@@ -25,7 +25,7 @@
       "city": "Convent",
       "zipcode": "345252"
     },
-    "phone": "(905) 487-3313",
+    "contactNumber": "(905) 487-3313",
     "userId": "Convent",
     "password": "password2"
   },
@@ -40,7 +40,7 @@
       "city": "Naomi",
       "zipcode": "345521"
     },
-    "phone": "(931) 495-3605",
+    "contactNumber": "(931) 495-3605",
     "userId": "Naomi",
     "password": "password2"
   },
@@ -55,7 +55,7 @@
       "city": "Wanamie",
       "zipcode": "378504"
     },
-    "phone": "(952) 416-2794",
+    "contactNumber": "(952) 416-2794",
     "userId": "Wanamie",
     "password": "password3"
   },
@@ -70,7 +70,7 @@
       "city": "Sexton",
       "zipcode": "242581"
     },
-    "phone": "(993) 541-2031",
+    "contactNumber": "(993) 541-2031",
     "userId": "Sexton",
     "password": "password4"
   },
@@ -85,7 +85,7 @@
       "city": "Emory",
       "zipcode": "213188"
     },
-    "phone": "(810) 476-3244",
+    "contactNumber": "(810) 476-3244",
     "userId": "Emory",
     "password": "password5"
   },
@@ -100,7 +100,7 @@
       "city": "Salvo",
       "zipcode": "341974"
     },
-    "phone": "(880) 467-3356",
+    "contactNumber": "(880) 467-3356",
     "userId": "Salvo",
     "password": "password7"
   },
@@ -115,7 +115,7 @@
       "city": "Waiohinu",
       "zipcode": "367825"
     },
-    "phone": "(988) 441-2540",
+    "contactNumber": "(988) 441-2540",
     "userId": "moralesanderson@zilencio.com",
     "password": "Chan"
   },
@@ -130,7 +130,7 @@
       "city": "Wadsworth",
       "zipcode": "326416"
     },
-    "phone": "(835) 590-2486",
+    "contactNumber": "(835) 590-2486",
     "userId": "lauricarr@zilencio.com",
     "password": "Alvarez"
   },
@@ -145,7 +145,7 @@
       "city": "Foxworth",
       "zipcode": "309107"
     },
-    "phone": "(804) 552-2838",
+    "contactNumber": "(804) 552-2838",
     "userId": "adabaker@zilencio.com",
     "password": "Lee"
   },
@@ -160,7 +160,7 @@
       "city": "Noblestown",
       "zipcode": "259037"
     },
-    "phone": "(850) 538-2559",
+    "contactNumber": "(850) 538-2559",
     "userId": "jamesleblanc@zilencio.com",
     "password": "Stark"
   },
@@ -175,7 +175,7 @@
       "city": "Leola",
       "zipcode": "380359"
     },
-    "phone": "(878) 540-2132",
+    "contactNumber": "(878) 540-2132",
     "userId": "georgettetownsend@zilencio.com",
     "password": "Morin"
   }

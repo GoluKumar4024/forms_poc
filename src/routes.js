@@ -17,6 +17,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import AddDeliveryBoy from "./Screens/AddDeliveryBoy";
 import DeliveryBoyList from "./Screens/DeliveryBoyList";
 import DeliveryBoyCard from "./Screens/DeliveryBoyCard";
+import UpdateDeliveryBoy from "./Screens/UpdateDeliveryBoy";
 
 /*=============================================================================================================*/
 
@@ -28,6 +29,7 @@ const Routes = () => {
       <Stack.Navigator initialRouteName="DeliveryBoyList">
         <Stack.Screen name="DeliveryBoyList" component={DeliveryBoyList} />
         <Stack.Screen name="Profile" component={DeliveryBoyCard} />
+        <Stack.Screen name="Update Data" component={UpdateDeliveryBoy} />
       </Stack.Navigator>
     </NavigationContainer>
   );

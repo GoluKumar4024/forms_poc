@@ -33,7 +33,7 @@ const DeliveryBoyCard = ({ route, navigation }) => {
   const dataArray = {
     "First Name": item.firstName,
     "Last Name": item.lastName,
-    "Phone No": item.phone,
+    "Phone No": item.contactNumber,
     "User Id": item.userId,
     Password: item.password,
     Coordinates: `[ ${item.address.coord[0]},${item.address.coord[1]} ]`,
@@ -76,10 +76,20 @@ const DeliveryBoyCard = ({ route, navigation }) => {
             ))}
           </DataTable>
         </View>
-        <TouchableOpacity
-          style={styles.futureActions}
-          onPress={() => navigation.goBack()}
-        ></TouchableOpacity>
+        <View style={styles.futureActions}>
+          <TouchableOpacity
+            title="Update"
+            style={styles.update}
+            onPress={() =>
+              navigation.navigate("Update Data", { item: { ...item } })
+            }
+          >
+            <Text>Update</Text>
+          </TouchableOpacity>
+          <TouchableOpacity title="Delete" style={styles.delete}>
+            <Text>Delete</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </React.Fragment>
   );
@@ -102,7 +112,26 @@ const styles = StyleSheet.create({
   },
   futureActions: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "pink",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    borderTopWidth: 1,
+    borderColor: "tomato",
+  },
+  update: {
+    borderWidth: 1,
+    borderColor: "blue",
+    color: "blue",
+    fontSize: 45,
+    padding: 10,
+  },
+  delete: {
+    borderWidth: 1,
+    borderColor: "blue",
+    color: "blue",
+    fontSize: 45,
+    padding: 10,
   },
 });
 

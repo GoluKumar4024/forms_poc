@@ -1,55 +1,64 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Button, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import { Header } from "react-native-elements";
 import { ListItem, SearchBar, Avatar } from "react-native-elements";
 import { DataTable } from "react-native-paper";
 
-const data = {
-  id: 15,
-  firstName: "Georgette",
-  lastName: "Townsend",
-  address: {
-    coord: [-45.143678, 13.233456],
-    street: "Terrace Place",
-    landmark: "Indiana",
-    city: "Leola",
-    zipcode: "380359",
-  },
-  phone: "(878) 540-2132",
-  userId: "georgette@zilencio.com",
-  password: "Morin",
-};
+// const data = {
+//   id: 15,
+//   firstName: "Georgette",
+//   lastName: "Townsend",
+//   address: {
+//     coord: [-45.143678, 13.233456],
+//     street: "Terrace Place",
+//     landmark: "Indiana",
+//     city: "Leola",
+//     zipcode: "380359",
+//   },
+//   phone: "(878) 540-2132",
+//   userId: "georgette@zilencio.com",
+//   password: "Morin",
+// };
 
-const dataArray = {
-  "First Name": data.firstName,
-  "Last Name": data.lastName,
-  "Phone No": data.phone,
-  "User Id": data.userId,
-  Password: data.password,
-  Coordinates: `[ ${data.address.coord[0]},${data.address.coord[0]} ]`,
-  " Street": data.address.street,
-  Landmark: data.address.landmark,
-  City: data.address.city,
-  Zipcode: data.address.zipcode,
-};
+const DeliveryBoyCard = ({ route, navigation }) => {
+  const { item } = route.params;
+  console.log(item);
+  const dataArray = {
+    "First Name": item.firstName,
+    "Last Name": item.lastName,
+    "Phone No": item.phone,
+    "User Id": item.userId,
+    Password: item.password,
+    Coordinates: `[ ${item.address.coord[0]},${item.address.coord[1]} ]`,
+    " Street": item.address.street,
+    Landmark: item.address.landmark,
+    City: item.address.city,
+    Zipcode: item.address.zipcode,
+  };
 
-const DeliveryBoyCard = () => {
   return (
     <React.Fragment>
-      <Header
+      {/* <Header
         leftComponent={{ icon: "menu", color: "#fff" }}
         centerComponent={{
           text: "Profile",
           style: { color: "#fff" },
         }}
-      />
+      /> */}
       <View style={styles.profileViewStyle}>
         <View style={styles.profileAvatarStyle}>
           <Avatar
             size="large"
             rounded
             source={{ uri: "foo.jpg" }}
-            title={data.firstName[0]}
+            title={item.firstName[0]}
           />
         </View>
         <View style={styles.detailsStyle}>
@@ -67,7 +76,10 @@ const DeliveryBoyCard = () => {
             ))}
           </DataTable>
         </View>
-        <View style={styles.futureActions}></View>
+        <TouchableOpacity
+          style={styles.futureActions}
+          onPress={() => navigation.goBack()}
+        ></TouchableOpacity>
       </View>
     </React.Fragment>
   );
@@ -90,7 +102,7 @@ const styles = StyleSheet.create({
   },
   futureActions: {
     flex: 1,
-    backgroundColor: "green",
+    backgroundColor: "white",
   },
 });
 

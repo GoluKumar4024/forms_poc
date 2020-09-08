@@ -26,34 +26,37 @@ const renderSeparator = () => {
 
 const keyExtractor = (item, index) => index.toString();
 
-const renderItem = ({ item, index }) => {
-  return (
-    <ListItem
-      title={`${item.firstName} ${item.lastName}`}
-      subtitle={item.userId}
-      leftAvatar={
-        <Avatar rounded source={{ uri: "foo.jpg" }} title={item.firstName[0]} />
-      }
-      
-      onPress={() => {}}
-    />
-  );
-};
-
-const DeliveryBoyList = () => {
+const DeliveryBoyList = ({ navigation }) => {
   return (
     <React.Fragment>
-      <Header
+      {/* <Header
         leftComponent={{ icon: "menu", color: "#fff" }}
         centerComponent={{
           text: "Delivery Boy List",
           style: { color: "#fff" },
         }}
-      />
+      /> */}
       {/* <Text>{JSON.stringify(DeliveryBoy)}</Text> */}
       <FlatList
         data={DeliveryBoy}
-        renderItem={renderItem}
+        renderItem={({ item, index }) => {
+          return (
+            <ListItem
+              title={`${item.firstName} ${item.lastName}`}
+              subtitle={item.userId}
+              leftAvatar={
+                <Avatar
+                  rounded
+                  source={{ uri: "foo.jpg" }}
+                  title={item.firstName[0]}
+                />
+              }
+              onPress={() => {
+                navigation.navigate("Profile", { item: { ...item } });
+              }}
+            />
+          );
+        }}
         keyExtractor={keyExtractor}
         ItemSeparatorComponent={renderSeparator}
         onEndReachedThreshold={50}

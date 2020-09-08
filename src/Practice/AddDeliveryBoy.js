@@ -23,9 +23,10 @@ const AddDeliveryBoy = () => {
       .max(40, "Last Name is too Big!!!"),
 
     address: Yup.object().shape({
-      longitude: Yup.string().label("Longitude").required(),
-
-      latitude: Yup.string().label("latitude").required(),
+      coord: Yup.object().shape({
+        0: Yup.string().label("Longitude").required(),
+        1: Yup.string().label("Latitude").required(),
+      }),
 
       street: Yup.string().label("Street").required("*Required"),
 
@@ -40,6 +41,7 @@ const AddDeliveryBoy = () => {
           if (val) return val.toString().length === 6;
         }),
     }),
+
     contactNumber: Yup.string()
       .label("Contact Number")
       .required()
@@ -64,14 +66,14 @@ const AddDeliveryBoy = () => {
         leftComponent={{ icon: "menu", color: "#fff" }}
         centerComponent={{ text: "Add Delivery Boy", style: { color: "#fff" } }}
       />
+
       <KeyboardAwareScrollView style={{ marginTop: 20 }}>
         <Formik
           initialValues={{
             firstName: "",
             lastName: "",
             address: {
-              longitude: "",
-              latitude: "",
+              coord: ["", ""],
               street: "",
               landmark: "",
               city: "",
@@ -96,136 +98,60 @@ const AddDeliveryBoy = () => {
                 autoFocus
                 placeholder="First Name"
               />
-              {formikProps.touched.firstName &&
-                formikProps.errors.firstName && (
-                  <Text style={styles.error}>
-                    {formikProps.errors.firstName}
-                  </Text>
-                )}
-
               <StyledInput
                 label="Last Name"
                 formikProps={formikProps}
                 formikKey="lastName"
                 placeholder="Last Name"
               />
-              {formikProps.touched.lastName && formikProps.errors.lastName && (
-                <Text style={styles.error}>{formikProps.errors.lastName}</Text>
-              )}
-
               <StyledInput
-                label="Longitude"
+                label="Address Longitde"
                 formikProps={formikProps}
-                formikKey="address.longitude"
-                placeholder="Longitude"
+                formikKey="address.coord[0]"
+                placeholder="Address Longitude"
               />
-              {formikProps.errors.address &&
-                formikProps.touched.address &&
-                formikProps.errors.address.longitude &&
-                formikProps.touched.address.longitude && (
-                  <Text style={styles.error}>
-                    {formikProps.errors.address.longitude}
-                  </Text>
-                )}
-
               <StyledInput
-                label="Latitude"
+                label="Address Latitude"
                 formikProps={formikProps}
-                formikKey="address.latitude"
-                placeholder="Latitude"
+                formikKey="address.coord[1]"
+                placeholder="Address Latitude"
               />
-              {formikProps.errors.address &&
-                formikProps.touched.address &&
-                formikProps.errors.address.latitude &&
-                formikProps.touched.address.latitude && (
-                  <Text style={styles.error}>
-                    {formikProps.errors.address.latitude}
-                  </Text>
-                )}
-
               <StyledInput
                 label="Street"
                 formikProps={formikProps}
                 formikKey="address.street"
                 placeholder="Street"
               />
-              {formikProps.errors.address &&
-                formikProps.touched.address &&
-                formikProps.errors.address.street &&
-                formikProps.touched.address.street && (
-                  <Text style={styles.error}>
-                    {formikProps.errors.address.street}
-                  </Text>
-                )}
-
               <StyledInput
                 label="Landmark"
                 formikProps={formikProps}
                 formikKey="address.landmark"
                 placeholder="Landmark"
               />
-              {formikProps.errors.address &&
-                formikProps.touched.address &&
-                formikProps.errors.address.landmark &&
-                formikProps.touched.address.landmark && (
-                  <Text style={styles.error}>
-                    {formikProps.errors.address.landmark}
-                  </Text>
-                )}
-
               <StyledInput
                 label="City"
                 formikProps={formikProps}
                 formikKey="address.city"
                 placeholder="City"
               />
-              {formikProps.errors.address &&
-                formikProps.touched.address &&
-                formikProps.errors.address.city &&
-                formikProps.touched.address.city && (
-                  <Text style={styles.error}>
-                    {formikProps.errors.address.city}
-                  </Text>
-                )}
-
               <StyledInput
-                label="ZipCode"
+                label="Zipcode"
                 formikProps={formikProps}
                 formikKey="address.zipcode"
-                placeholder="ZipCode"
+                placeholder="Zipcode"
               />
-              {formikProps.errors.address &&
-                formikProps.touched.address &&
-                formikProps.errors.address.zipcode &&
-                formikProps.touched.address.zipcode && (
-                  <Text style={styles.error}>
-                    {formikProps.errors.address.zipcode}
-                  </Text>
-                )}
-
               <StyledInput
                 label="Contact Number"
                 formikProps={formikProps}
                 formikKey="contactNumber"
                 placeholder="Contact Number"
               />
-              {formikProps.touched.contactNumber &&
-                formikProps.errors.contactNumber && (
-                  <Text style={styles.error}>
-                    {formikProps.errors.contactNumber}
-                  </Text>
-                )}
-
               <StyledInput
                 label="User Id"
                 formikProps={formikProps}
                 formikKey="userId"
                 placeholder="User Id"
               />
-              {formikProps.touched.userId && formikProps.errors.userId && (
-                <Text style={styles.error}>{formikProps.errors.userId}</Text>
-              )}
-
               <StyledInput
                 label="Password"
                 formikProps={formikProps}
@@ -233,15 +159,7 @@ const AddDeliveryBoy = () => {
                 placeholder="Password"
                 secureTextEntry
               />
-              {formikProps.touched.password && formikProps.errors.password && (
-                <Text style={styles.error}>{formikProps.errors.password}</Text>
-              )}
-
-              <Button
-                title="Add"
-                style={styles.btn}
-                onPress={formikProps.handleSubmit}
-              />
+              <Button title="Add" onPress={formikProps.handleSubmit} />
             </React.Fragment>
           )}
         </Formik>
@@ -250,16 +168,6 @@ const AddDeliveryBoy = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  error: {
-    color: "red",
-    marginHorizontal: 20,
-  },
-
-  btn: {
-    marginLeft: 20,
-    marginRight: 20,
-  },
-});
+const styles = StyleSheet.create({});
 
 export default AddDeliveryBoy;

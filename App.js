@@ -1,21 +1,19 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import SignUp from "./src/Screens/SignUp";
+
+import AddDeliveryBoy from "./src/Screens/DeliveryBoy/AddDeliveryBoy";
+
+import Routes from "./src/Routes";
+import { Provider as DeliveryBoyProvider } from "./src/contexts/DeliveryBoyContext";
+import { Provider as ShowFormContextProvider } from "./src/contexts/ShowFormContext";
+
 export default function App() {
   return (
-    <View style={styles.container}>
-      <SignUp />
-      <StatusBar style="auto" />
-    </View>
+    <ShowFormContextProvider>
+      <DeliveryBoyProvider>
+        <Routes />
+      </DeliveryBoyProvider>
+    </ShowFormContextProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

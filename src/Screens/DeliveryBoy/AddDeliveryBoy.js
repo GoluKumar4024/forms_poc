@@ -13,12 +13,6 @@ const AddDeliveryBoy = ({ navigation }) => {
   // for performing the operation
   const { state, addDeliveryBoy } = useContext(DeliveryBoyContext);
 
-  // this function will help in re-rendering the "DeliveryBoyDetails" stack after
-  // the form is submitted,
-  // I will pass this function as callback from "submit" part here
-  // and it will be called as callback in "addDeliveryBoy()" function
-  // const { hideForm } = useContext(ShowFormContext);
-
   //======================================================
 
   const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;

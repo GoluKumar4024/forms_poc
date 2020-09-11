@@ -32,11 +32,6 @@ const DeliveryBoyList = ({ navigation }) => {
   // so it is being extracted from DeliveryBoyContext
   const { state } = useContext(DeliveryBoyContext);
 
-  // This determines whether the "AddDeliveryBoy" screen should render
-  // or "DeliveryBoyDetails" stack should render
-  // by calling this we are allowing recat native to show the "AddDeliveryBoy" component
-  // const { showForm } = useContext(ShwFormContext);
-
   return (
     <SafeAreaView>
       {/* <Text>{JSON.stringify(DeliveryBoy)}</Text> */}

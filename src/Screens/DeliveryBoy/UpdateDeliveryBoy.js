@@ -1,12 +1,15 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import { Formik, Field, Form, ErrorMessage, useField } from "formik";
 import * as Yup from "yup";
 import { View, Text, StyleSheet, Button, TextInput } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Header } from "react-native-elements";
 import StyledInput from "../../components/StyledInput";
+import { Context as DeliveryBoyContext } from "../../contexts/DeliveryBoyContext";
 
 const UpdateDeliveryBoy = ({ route, navigation }) => {
+  const { state, updateDeliveryBoy } = useContext(DeliveryBoyContext);
+
   //console.log(item);
 
   const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
@@ -83,8 +86,17 @@ const UpdateDeliveryBoy = ({ route, navigation }) => {
             password: item.password,
           }}
           onSubmit={(values) => {
-            alert(JSON.stringify(values), null, 10);
-            console.log(values);
+            // alert(JSON.stringify(values), null, 10);
+            // console.log(values);
+            values.address.coord = [
+              values.address.longitude,
+              values.address.latitude,
+            ];
+            delete values.address.longitude;
+            delete values.address.latitude;
+            updateDeliveryBoy(values, () =>
+              navigation.navigate("DeliveryBoyList")
+            );
           }}
           validationSchema={validationSchema}
         >
@@ -229,7 +241,7 @@ const UpdateDeliveryBoy = ({ route, navigation }) => {
                 formikProps={formikProps}
                 formikKey="userId"
                 placeholder="User Id"
-                //value={item.userId}
+                value={item.userId}
               />
               {formikProps.touched.userId && formikProps.errors.userId && (
                 <Text style={styles.error}>{formikProps.errors.userId}</Text>

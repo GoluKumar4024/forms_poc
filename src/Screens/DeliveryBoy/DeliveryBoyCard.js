@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import {
   View,
   Text,
@@ -10,25 +10,12 @@ import {
 import { Header } from "react-native-elements";
 import { ListItem, SearchBar, Avatar } from "react-native-elements";
 import { DataTable } from "react-native-paper";
-
-// const data = {
-//   id: 15,
-//   firstName: "Georgette",
-//   lastName: "Townsend",
-//   address: {
-//     coord: [-45.143678, 13.233456],
-//     street: "Terrace Place",
-//     landmark: "Indiana",
-//     city: "Leola",
-//     zipcode: "380359",
-//   },
-//   phone: "(878) 540-2132",
-//   userId: "georgette@zilencio.com",
-//   password: "Morin",
-// };
+import { Context as DeliveryBoyContext } from "../../contexts/DeliveryBoyContext";
 
 const DeliveryBoyCard = ({ route, navigation }) => {
   const { item } = route.params;
+
+  const { deleteDeliveryBoy } = useContext(DeliveryBoyContext);
   console.log(item);
   const dataArray = {
     "First Name": item.firstName,
@@ -45,13 +32,6 @@ const DeliveryBoyCard = ({ route, navigation }) => {
 
   return (
     <React.Fragment>
-      {/* <Header
-        leftComponent={{ icon: "menu", color: "#fff" }}
-        centerComponent={{
-          text: "Profile",
-          style: { color: "#fff" },
-        }}
-      /> */}
       <View style={styles.profileViewStyle}>
         <View style={styles.profileAvatarStyle}>
           <Avatar
@@ -86,7 +66,15 @@ const DeliveryBoyCard = ({ route, navigation }) => {
           >
             <Text>Update</Text>
           </TouchableOpacity>
-          <TouchableOpacity title="Delete" style={styles.delete}>
+          <TouchableOpacity
+            title="Delete"
+            style={styles.delete}
+            onPress={() =>
+              deleteDeliveryBoy(item, () =>
+                navigation.navigate("DeliveryBoyList")
+              )
+            }
+          >
             <Text>Delete</Text>
           </TouchableOpacity>
         </View>

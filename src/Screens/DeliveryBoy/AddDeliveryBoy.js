@@ -94,7 +94,7 @@ const AddDeliveryBoy = ({ navigation }) => {
             ];
             delete values.address.longitude;
             delete values.address.latitude;
-            alert(JSON.stringify(values), null, 10);
+            // alert(JSON.stringify(values), null, 10);
             // console.log(values);
             addDeliveryBoy(values, () =>
               navigation.navigate("DeliveryBoyList")

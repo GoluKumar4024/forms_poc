@@ -11,13 +11,13 @@ const delieryBoyReducer = (state, action) => {
       return [...state, action.payload];
     case "updateDeliveryBoy":
       return state.map((deliveryBoy) =>
-        deliveryBoy.useId === action.payload.userId
+        deliveryBoy.userId === action.payload.userId
           ? action.payload
           : deliveryBoy
       );
     case "deleteDeliveryBoy":
       return state.filter(
-        (deliveryBoy) => deliveryBoy.userId !== payload.userId
+        (deliveryBoy) => deliveryBoy.userId !== action.payload.userId
       );
   }
 };
@@ -41,8 +41,11 @@ const updateDeliveryBoy = (dispatch) => {
 };
 
 const deleteDeliveryBoy = (dispatch) => {
-  return (deliveryBoy) => {
+  return (deliveryBoy, callback) => {
     dispatch({ type: "deleteDeliveryBoy", payload: deliveryBoy });
+    if (callback) {
+      callback();
+    }
   };
 };
 

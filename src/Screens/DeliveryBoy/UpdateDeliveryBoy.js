@@ -4,9 +4,11 @@ import * as Yup from "yup";
 import { View, Text, StyleSheet, Button, TextInput } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Header } from "react-native-elements";
-import StyledInput from "../components/StyledInput";
+import StyledInput from "../../components/StyledInput";
 
-const AddDeliveryBoy = () => {
+const UpdateDeliveryBoy = ({ route, navigation }) => {
+  //console.log(item);
+
   const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
 
   const validationSchema = Yup.object().shape({
@@ -58,36 +60,29 @@ const AddDeliveryBoy = () => {
       .max(20, "We prefer a medium sized password"),
   });
 
+  const { item } = route.params;
+
   return (
     <React.Fragment>
-      <Header
-        leftComponent={{ icon: "menu", color: "#fff" }}
-        centerComponent={{ text: "Add Delivery Boy", style: { color: "#fff" } }}
-      />
       <KeyboardAwareScrollView style={{ marginTop: 20 }}>
         <Formik
+          enableReinitialize
           initialValues={{
-            firstName: "",
-            lastName: "",
+            firstName: item.firstName,
+            lastName: item.lastName,
             address: {
-              longitude: "",
-              latitude: "",
-              street: "",
-              landmark: "",
-              city: "",
-              zipcode: "",
+              longitude: item.address.coord[0],
+              latitude: item.address.coord[1],
+              street: item.address.street,
+              landmark: item.address.landmark,
+              city: item.address.city,
+              zipcode: item.address.zipcode,
             },
-            contactNumber: "",
-            userId: "",
-            password: "",
+            contactNumber: item.contactNumber,
+            userId: item.userId,
+            password: item.password,
           }}
           onSubmit={(values) => {
-            values.address.coord = [
-              values.address.longitude,
-              values.address.latitude,
-            ];
-            delete values.address.longitude;
-            delete values.address.latitude;
             alert(JSON.stringify(values), null, 10);
             console.log(values);
           }}
@@ -101,6 +96,7 @@ const AddDeliveryBoy = () => {
                 formikKey="firstName"
                 autoFocus
                 placeholder="First Name"
+                // value={item.firstName}
               />
               {formikProps.touched.firstName &&
                 formikProps.errors.firstName && (
@@ -114,6 +110,7 @@ const AddDeliveryBoy = () => {
                 formikProps={formikProps}
                 formikKey="lastName"
                 placeholder="Last Name"
+                // value={item.lastName}
               />
               {formikProps.touched.lastName && formikProps.errors.lastName && (
                 <Text style={styles.error}>{formikProps.errors.lastName}</Text>
@@ -154,6 +151,7 @@ const AddDeliveryBoy = () => {
                 formikProps={formikProps}
                 formikKey="address.street"
                 placeholder="Street"
+                // value={item.address.street}
               />
               {formikProps.errors.address &&
                 formikProps.touched.address &&
@@ -169,6 +167,7 @@ const AddDeliveryBoy = () => {
                 formikProps={formikProps}
                 formikKey="address.landmark"
                 placeholder="Landmark"
+                // value={item.address.street}
               />
               {formikProps.errors.address &&
                 formikProps.touched.address &&
@@ -184,6 +183,7 @@ const AddDeliveryBoy = () => {
                 formikProps={formikProps}
                 formikKey="address.city"
                 placeholder="City"
+                // value={item.address.city}
               />
               {formikProps.errors.address &&
                 formikProps.touched.address &&
@@ -199,6 +199,7 @@ const AddDeliveryBoy = () => {
                 formikProps={formikProps}
                 formikKey="address.zipcode"
                 placeholder="ZipCode"
+                // value={item.address.zipcode}
               />
               {formikProps.errors.address &&
                 formikProps.touched.address &&
@@ -214,6 +215,7 @@ const AddDeliveryBoy = () => {
                 formikProps={formikProps}
                 formikKey="contactNumber"
                 placeholder="Contact Number"
+                // value={item.contactNumber}
               />
               {formikProps.touched.contactNumber &&
                 formikProps.errors.contactNumber && (
@@ -227,6 +229,7 @@ const AddDeliveryBoy = () => {
                 formikProps={formikProps}
                 formikKey="userId"
                 placeholder="User Id"
+                //value={item.userId}
               />
               {formikProps.touched.userId && formikProps.errors.userId && (
                 <Text style={styles.error}>{formikProps.errors.userId}</Text>
@@ -244,7 +247,7 @@ const AddDeliveryBoy = () => {
               )}
 
               <Button
-                title="Add"
+                title="Update"
                 style={styles.btn}
                 onPress={formikProps.handleSubmit}
               />
@@ -268,4 +271,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddDeliveryBoy;
+export default UpdateDeliveryBoy;

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import {
   View,
   Text,
@@ -8,8 +8,9 @@ import {
   SafeAreaView,
 } from "react-native";
 import { ListItem, SearchBar, Avatar } from "react-native-elements";
-import DeliveryBoy from "../RawData/DeliveryBoy.json";
-import { Header } from "react-native-elements";
+import { FAB } from "react-native-paper";
+import { Context as DeliveryBoyContext } from "../../contexts/DeliveryBoyContext";
+import { Context as ShwFormContext } from "../../contexts/ShowFormContext";
 
 const renderSeparator = () => {
   return (
@@ -27,18 +28,20 @@ const renderSeparator = () => {
 const keyExtractor = (item, index) => index.toString();
 
 const DeliveryBoyList = ({ navigation }) => {
+  // This determines the data to be rendered as list
+  // so it is being extracted from DeliveryBoyContext
+  const { state } = useContext(DeliveryBoyContext);
+
+  // This determines whether the "AddDeliveryBoy" screen should render
+  // or "DeliveryBoyDetails" stack should render
+  // by calling this we are allowing recat native to show the "AddDeliveryBoy" component
+  const { showForm } = useContext(ShwFormContext);
+
   return (
-    <React.Fragment>
-      {/* <Header
-        leftComponent={{ icon: "menu", color: "#fff" }}
-        centerComponent={{
-          text: "Delivery Boy List",
-          style: { color: "#fff" },
-        }}
-      /> */}
+    <SafeAreaView>
       {/* <Text>{JSON.stringify(DeliveryBoy)}</Text> */}
       <FlatList
-        data={DeliveryBoy}
+        data={state}
         renderItem={({ item, index }) => {
           return (
             <ListItem
@@ -61,10 +64,18 @@ const DeliveryBoyList = ({ navigation }) => {
         ItemSeparatorComponent={renderSeparator}
         onEndReachedThreshold={50}
       />
-    </React.Fragment>
+      <FAB style={styles.fab} medium icon="plus" onPress={showForm} />
+    </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  fab: {
+    position: "absolute",
+    margin: 16,
+    right: 0,
+    bottom: 0,
+  },
+});
 
 export default DeliveryBoyList;

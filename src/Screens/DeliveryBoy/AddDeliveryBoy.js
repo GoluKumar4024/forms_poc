@@ -1,13 +1,25 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import { Formik, Field, Form, ErrorMessage, useField } from "formik";
 import * as Yup from "yup";
 import { View, Text, StyleSheet, Button, TextInput } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Header } from "react-native-elements";
-import StyledInput from "../components/StyledInput";
+import StyledInput from "../../components/StyledInput";
+import { Context as DeliveryBoyContext } from "../../contexts/DeliveryBoyContext";
+import { Context as ShowFormContext } from "../../contexts/ShowFormContext";
 
-const UpdateDeliveryBoy = ({ route, navigation }) => {
-  //console.log(item);
+const AddDeliveryBoy = () => {
+  // Importing DeliveryBoy context from the DeliveryBoyContext
+  // for performing the operation
+  const { state, addDeliveryBoy } = useContext(DeliveryBoyContext);
+
+  // this function will help in re-rendering the "DeliveryBoyDetails" stack after
+  // the form is submitted,
+  // I will pass this function as callback from "submit" part here
+  // and it will be called as callback in "addDeliveryBoy()" function
+  const { hideForm } = useContext(ShowFormContext);
+
+  //======================================================
 
   const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
 
@@ -60,31 +72,42 @@ const UpdateDeliveryBoy = ({ route, navigation }) => {
       .max(20, "We prefer a medium sized password"),
   });
 
-  const { item } = route.params;
+  //================================================================
 
   return (
     <React.Fragment>
+      <Header
+        leftComponent={{ icon: "menu", color: "#fff" }}
+        centerComponent={{ text: "Add Delivery Boy", style: { color: "#fff" } }}
+      />
       <KeyboardAwareScrollView style={{ marginTop: 20 }}>
         <Formik
-          enableReinitialize
           initialValues={{
-            firstName: item.firstName,
-            lastName: item.lastName,
+            firstName: "",
+            lastName: "",
             address: {
-              longitude: item.address.coord[0],
-              latitude: item.address.coord[1],
-              street: item.address.street,
-              landmark: item.address.landmark,
-              city: item.address.city,
-              zipcode: item.address.zipcode,
+              longitude: "",
+              latitude: "",
+              street: "",
+              landmark: "",
+              city: "",
+              zipcode: "",
             },
-            contactNumber: item.contactNumber,
-            userId: item.userId,
-            password: item.password,
+            contactNumber: "",
+            userId: "",
+            password: "",
           }}
           onSubmit={(values) => {
+            values.address.coord = [
+              values.address.longitude,
+              values.address.latitude,
+            ];
+            delete values.address.longitude;
+            delete values.address.latitude;
             alert(JSON.stringify(values), null, 10);
-            console.log(values);
+            // console.log(values);
+            addDeliveryBoy(values, hideForm);
+            // console.log(state);
           }}
           validationSchema={validationSchema}
         >
@@ -239,7 +262,7 @@ const UpdateDeliveryBoy = ({ route, navigation }) => {
               )}
 
               <Button
-                title="Update"
+                title="Add"
                 style={styles.btn}
                 onPress={formikProps.handleSubmit}
               />
@@ -263,4 +286,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UpdateDeliveryBoy;
+export default AddDeliveryBoy;

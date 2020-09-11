@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import {
   View,
   Text,
@@ -14,16 +14,17 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 /*============================================================================================================= */
 
-import AddDeliveryBoy from "./Screens/AddDeliveryBoy";
-import DeliveryBoyList from "./Screens/DeliveryBoyList";
-import DeliveryBoyCard from "./Screens/DeliveryBoyCard";
-import UpdateDeliveryBoy from "./Screens/UpdateDeliveryBoy";
+import AddDeliveryBoy from "./Screens/DeliveryBoy/AddDeliveryBoy";
+import DeliveryBoyList from "./Screens/DeliveryBoy/DeliveryBoyList";
+import DeliveryBoyCard from "./Screens/DeliveryBoy/DeliveryBoyCard";
+import UpdateDeliveryBoy from "./Screens/DeliveryBoy/UpdateDeliveryBoy";
 
+import { Context as ShowFormContext } from "./contexts/ShowFormContext";
 /*=============================================================================================================*/
 
 const Stack = createStackNavigator();
 
-const Routes = () => {
+const DeliveryBoyDetails = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="DeliveryBoyList">
@@ -33,6 +34,14 @@ const Routes = () => {
       </Stack.Navigator>
     </NavigationContainer>
   );
+};
+
+const Routes = () => {
+  // To determine whether the "AddDeliveryBoy" form shuld be rendered or
+  // The "DeliveryBoyDetails" component stack should be rendered
+  const { state } = useContext(ShowFormContext);
+
+  return state ? <AddDeliveryBoy /> : <DeliveryBoyDetails />;
 };
 
 export default Routes;

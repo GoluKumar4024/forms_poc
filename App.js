@@ -2,9 +2,18 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-// import Routes from "./src/Routes";
-import AddDeliveryBoy from "./src/Screens/AddDeliveryBoy";
+import AddDeliveryBoy from "./src/Screens/DeliveryBoy/AddDeliveryBoy";
+
+import Routes from "./src/Routes";
+import { Provider as DeliveryBoyProvider } from "./src/contexts/DeliveryBoyContext";
+import { Provider as ShowFormContextProvider } from "./src/contexts/ShowFormContext";
 
 export default function App() {
-  return <AddDeliveryBoy />;
+  return (
+    <ShowFormContextProvider>
+      <DeliveryBoyProvider>
+        <Routes />
+      </DeliveryBoyProvider>
+    </ShowFormContextProvider>
+  );
 }

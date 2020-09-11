@@ -8,7 +8,7 @@ import StyledInput from "../../components/StyledInput";
 import { Context as DeliveryBoyContext } from "../../contexts/DeliveryBoyContext";
 import { Context as ShowFormContext } from "../../contexts/ShowFormContext";
 
-const AddDeliveryBoy = () => {
+const AddDeliveryBoy = ({ navigation }) => {
   // Importing DeliveryBoy context from the DeliveryBoyContext
   // for performing the operation
   const { state, addDeliveryBoy } = useContext(DeliveryBoyContext);
@@ -17,7 +17,7 @@ const AddDeliveryBoy = () => {
   // the form is submitted,
   // I will pass this function as callback from "submit" part here
   // and it will be called as callback in "addDeliveryBoy()" function
-  const { hideForm } = useContext(ShowFormContext);
+  // const { hideForm } = useContext(ShowFormContext);
 
   //======================================================
 
@@ -76,10 +76,6 @@ const AddDeliveryBoy = () => {
 
   return (
     <React.Fragment>
-      <Header
-        leftComponent={{ icon: "menu", color: "#fff" }}
-        centerComponent={{ text: "Add Delivery Boy", style: { color: "#fff" } }}
-      />
       <KeyboardAwareScrollView style={{ marginTop: 20 }}>
         <Formik
           initialValues={{
@@ -106,7 +102,9 @@ const AddDeliveryBoy = () => {
             delete values.address.latitude;
             alert(JSON.stringify(values), null, 10);
             // console.log(values);
-            addDeliveryBoy(values, hideForm);
+            addDeliveryBoy(values, () =>
+              navigation.navigate("DeliveryBoyList")
+            );
             // console.log(state);
           }}
           validationSchema={validationSchema}

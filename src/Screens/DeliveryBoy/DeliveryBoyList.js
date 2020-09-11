@@ -35,7 +35,7 @@ const DeliveryBoyList = ({ navigation }) => {
   // This determines whether the "AddDeliveryBoy" screen should render
   // or "DeliveryBoyDetails" stack should render
   // by calling this we are allowing recat native to show the "AddDeliveryBoy" component
-  const { showForm } = useContext(ShwFormContext);
+  // const { showForm } = useContext(ShwFormContext);
 
   return (
     <SafeAreaView>
@@ -64,7 +64,12 @@ const DeliveryBoyList = ({ navigation }) => {
         ItemSeparatorComponent={renderSeparator}
         onEndReachedThreshold={50}
       />
-      <FAB style={styles.fab} medium icon="plus" onPress={showForm} />
+      <FAB
+        style={styles.fab}
+        medium
+        icon="plus"
+        onPress={() => navigation.push("Add Delivery Boy")}
+      />
     </SafeAreaView>
   );
 };

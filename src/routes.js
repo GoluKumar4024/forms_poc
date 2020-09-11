@@ -24,24 +24,27 @@ import { Context as ShowFormContext } from "./contexts/ShowFormContext";
 
 const Stack = createStackNavigator();
 
-const DeliveryBoyDetails = () => {
+// const DeliveryBoyDetails = () => {
+//   return (
+
+//   );
+// };
+
+const Routes = () => {
+  // To determine whether the "AddDeliveryBoy" form shuld be rendered or
+  // The "DeliveryBoyDetails" component stack should be rendered
+  //const { state } = useContext(ShowFormContext);
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="DeliveryBoyList">
         <Stack.Screen name="DeliveryBoyList" component={DeliveryBoyList} />
         <Stack.Screen name="Profile" component={DeliveryBoyCard} />
         <Stack.Screen name="Update Data" component={UpdateDeliveryBoy} />
+        <Stack.Screen name="Add Delivery Boy" component={AddDeliveryBoy} />
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
-
-const Routes = () => {
-  // To determine whether the "AddDeliveryBoy" form shuld be rendered or
-  // The "DeliveryBoyDetails" component stack should be rendered
-  const { state } = useContext(ShowFormContext);
-
-  return state ? <AddDeliveryBoy /> : <DeliveryBoyDetails />;
 };
 
 export default Routes;

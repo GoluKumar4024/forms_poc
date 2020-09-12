@@ -108,7 +108,7 @@ const UpdateDeliveryBoy = ({ route, navigation }) => {
                 formikKey="firstName"
                 autoFocus
                 placeholder="First Name"
-                // value={item.firstName}
+                defaultValue={item.firstName}
               />
               {formikProps.touched.firstName &&
                 formikProps.errors.firstName && (
@@ -122,7 +122,7 @@ const UpdateDeliveryBoy = ({ route, navigation }) => {
                 formikProps={formikProps}
                 formikKey="lastName"
                 placeholder="Last Name"
-                // value={item.lastName}
+                defaultValue={item.lastName}
               />
               {formikProps.touched.lastName && formikProps.errors.lastName && (
                 <Text style={styles.error}>{formikProps.errors.lastName}</Text>
@@ -133,6 +133,7 @@ const UpdateDeliveryBoy = ({ route, navigation }) => {
                 formikProps={formikProps}
                 formikKey="address.longitude"
                 placeholder="Longitude"
+                defaultValue={item.address.coord[0]}
               />
               {formikProps.errors.address &&
                 formikProps.touched.address &&
@@ -148,6 +149,7 @@ const UpdateDeliveryBoy = ({ route, navigation }) => {
                 formikProps={formikProps}
                 formikKey="address.latitude"
                 placeholder="Latitude"
+                defaultValue={item.address.coord[1]}
               />
               {formikProps.errors.address &&
                 formikProps.touched.address &&
@@ -163,7 +165,7 @@ const UpdateDeliveryBoy = ({ route, navigation }) => {
                 formikProps={formikProps}
                 formikKey="address.street"
                 placeholder="Street"
-                // value={item.address.street}
+                defaultValue={item.address.street}
               />
               {formikProps.errors.address &&
                 formikProps.touched.address &&
@@ -179,7 +181,7 @@ const UpdateDeliveryBoy = ({ route, navigation }) => {
                 formikProps={formikProps}
                 formikKey="address.landmark"
                 placeholder="Landmark"
-                // value={item.address.street}
+                defaultValue={item.address.street}
               />
               {formikProps.errors.address &&
                 formikProps.touched.address &&
@@ -195,7 +197,7 @@ const UpdateDeliveryBoy = ({ route, navigation }) => {
                 formikProps={formikProps}
                 formikKey="address.city"
                 placeholder="City"
-                // value={item.address.city}
+                defaultValue={item.address.city}
               />
               {formikProps.errors.address &&
                 formikProps.touched.address &&
@@ -211,7 +213,7 @@ const UpdateDeliveryBoy = ({ route, navigation }) => {
                 formikProps={formikProps}
                 formikKey="address.zipcode"
                 placeholder="ZipCode"
-                // value={item.address.zipcode}
+                defaultValue={item.address.zipcode}
               />
               {formikProps.errors.address &&
                 formikProps.touched.address &&
@@ -227,7 +229,7 @@ const UpdateDeliveryBoy = ({ route, navigation }) => {
                 formikProps={formikProps}
                 formikKey="contactNumber"
                 placeholder="Contact Number"
-                // value={item.contactNumber}
+                defaultValue={item.contactNumber}
               />
               {formikProps.touched.contactNumber &&
                 formikProps.errors.contactNumber && (

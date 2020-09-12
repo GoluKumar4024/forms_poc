@@ -8,6 +8,8 @@ import Routes from "./src/Routes";
 import { Provider as DeliveryBoyProvider } from "./src/contexts/DeliveryBoyContext";
 import { Provider as ShowFormContextProvider } from "./src/contexts/ShowFormContext";
 
+//import PracticeRoute from "./src/Practice/PracticeRoute";
+
 export default function App() {
   return (
     <ShowFormContextProvider>
@@ -17,3 +19,10 @@ export default function App() {
     </ShowFormContextProvider>
   );
 }
+
+/*
+// main work
+
+
+
+*/
